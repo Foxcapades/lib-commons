@@ -10,17 +10,21 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 
-def vProp = file("version.properties")
+def vProp, props, buildV, verProp
+
+vProp = file("version.properties")
 
 if (!vProp.canRead()) {
     throw new GradleException("Could not read version.properties")
 }
 
-def props = new Properties();
+props = new Properties();
 props.load(vProp.newReader());
-def verProp = props['version']
-def buildV  = (props['build'].toInteger() +1).toString()
+
+verProp = props['version']
+buildV  = (props['build'].toInteger() +1).toString()
 props['build'] = buildV
+
 props.store(vProp.newWriter(), null)
 
 version = verProp + "b" + buildV
@@ -36,3 +40,4 @@ sourceSets {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.13'
 }
+

@@ -1,12 +1,7 @@
-package io.vulpine.common;
-
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.Nullable;
+package io.vulpine.commons;
 
 public class NullUtils
 {
-  @Nullable
-  @Contract( pure = true )
   @SafeVarargs
   public static < T > T coalesce ( T... tries )
   {

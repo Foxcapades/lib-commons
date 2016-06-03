@@ -1,4 +1,4 @@
-package io.vulpine.common;
+package io.vulpine.commons;
 
 /**
  * String Utils

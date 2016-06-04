@@ -34,7 +34,10 @@ public class StringUtils
     sb = new StringBuilder(in);
 
     int i = 0;
-    while (i + width < sb.length() && (i = sb.lastIndexOf(" ", i + width)) != -1) sb.replace(i, i + 1, "\n");
+    while (i + width < sb.length() && (i = sb.lastIndexOf(" ", i + width)) != -1) {
+      sb.replace(i, i + 1, "\n");
+      i++;
+    }
     return sb.toString();
   }
 
@@ -75,6 +78,7 @@ public class StringUtils
   {
     final StringBuilder sb = new StringBuilder();
     if (null == glue || null == pieces) return null;
+    if (pieces.length == 0) return "";
     for (final String s : pieces) sb.append(s).append(glue);
     return sb.toString().substring(0, sb.length() - glue.length());
   }

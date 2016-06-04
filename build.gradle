@@ -10,16 +10,13 @@ if (!vProp.canRead()) {
 
 props = new Properties();
 props.load(vProp.newReader());
+buildV = System.getenv("BUILD_NUMBER");
 
 verProp = props['version']
-buildV  = (props['build'].toInteger() +1).toString()
-props['build'] = buildV
 
-props.store(vProp.newWriter(), null)
+version = verProp + ((buildV == null) ? "" : "b" + buildV);
 
-version = verProp + "b" + buildV
-
-sourceSets {
+        sourceSets {
     main {
         java {
             srcDir 'src'

@@ -31,6 +31,8 @@ public class StringUtils
     final StringBuilder sb;
 
     if (null == in) return null;
+    if (width < 1) return in;
+
     sb = new StringBuilder(in);
 
     int i = 0;
@@ -58,6 +60,7 @@ public class StringUtils
   public static String[] wrapToLineArray ( final String in, final int width )
   {
     if (in == null) return null;
+    if (width < 1) return new String[] {in};
     return wrap(in, width).split("\n");
   }
 
@@ -76,9 +79,12 @@ public class StringUtils
    */
   public static String implode ( final String glue, final String[] pieces )
   {
-    final StringBuilder sb = new StringBuilder();
+    final StringBuilder sb;
+
     if (null == glue || null == pieces) return null;
     if (pieces.length == 0) return "";
+
+    sb = new StringBuilder();
     for (final String s : pieces) sb.append(s).append(glue);
     return sb.toString().substring(0, sb.length() - glue.length());
   }
@@ -127,8 +133,6 @@ public class StringUtils
       rem = diff % 5;
       div = (diff - rem) / 5;
       for (int i = 0; i < div; i++) sb.append(f);
-
-      return sb.toString();
     } else {
       rem = diff;
     }
@@ -166,7 +170,6 @@ public class StringUtils
       div = (diff - rem) / 5;
       for (int i = 0; i < div; i++) sb.insert(0, f);
 
-      return sb.toString();
     } else {
       rem = diff;
     }
